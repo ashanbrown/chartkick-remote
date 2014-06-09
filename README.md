@@ -6,11 +6,6 @@ This is an add-on to ankane's Chartkick to allow the user to specify chart data 
 
 For more on the fabulous Chartkick library, see http://ankane.github.io/chartkick/.
 
-To use this addon, you can specify the `remote` option and pass your data as a block:
-
-```ruby
-<%= line_chart(remote: true) { Task.group_by_day(:completed_at).count } %>
-```
 
 In your controller, add the following to tell the controller to respond to json requests for chart data:
 
@@ -19,19 +14,19 @@ include Chartkick::Remote
 chartkick_remote
 ```
 
-You can also still use the block syntax without the remote flag if you want to make the query when rendering the page:
+Then in your views, pass your data as a block:
 
 ```ruby
 <%= line_chart { Task.group_by_day(:completed_at).count } %>
 ```
 
-Finally, you can turn on remote requests for all blocks, by setting:
+To prevent remote requests for a particular chart, set `remote` to `false` in the chart options:
 
 ```ruby
-Chartkick.options = {
-  remote: true
-}
+<%= line_chart(remote: false) { Task.group_by_day(:completed_at).count } %>
 ```
+
+This will generate the data set immediately when the page is rendered.
 
 ## Installation
 

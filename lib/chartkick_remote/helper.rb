@@ -20,13 +20,16 @@ module Chartkick::Remote
         options = data_source
       end
 
-      is_remote = Chartkick.options.merge(options)[:remote]
+      options = options.dup
+      options.reverse_merge!(controller.class.chartkick_options) if controller.class.respond_to?(:chartkick_options)
+      options.reverse_merge!(Chartkick.options)
 
-      if is_remote
+      if options.delete(:remote)
         @remote_chart_id = (@remote_chart_id || 0) + 1
         if controller.params[:_chartkick_remote_chart_id] # json request
           controller.chartkick_remote_blocks ||= {}
           controller.chartkick_remote_blocks[@remote_chart_id] = block
+          options.merge!(controller.options)
         else
           data_source = url_for(params.merge(_chartkick_remote_chart_id: @remote_chart_id, format: :json))
         end
