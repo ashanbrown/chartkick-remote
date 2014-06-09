@@ -1,6 +1,7 @@
 module Chartkick::Remote
   extend ActiveSupport::Concern
   attr_accessor :chartkick_remote_blocks
+  attr_accessor :chartkick_options
 
   included do
     class_attribute :chartkick_options
@@ -25,11 +26,21 @@ module Chartkick::Remote
 
   module ClassMethods
     def chartkick_remote(options = {})
-      self.chartkick_options = {remote: true}.merge(options.except(:only, :except))
-      respond_to :json, options
+      options = options.dup
+
+      action_filter_options = options.extract!(:only, :except)
+
+      respond_to :json, action_filter_options
+
       self.responder = Class.new(responder) do
         include Responder
       end
+
+      before_filter action_filter_options do
+        self.chartkick_options = self.class.chartkick_options
+      end
+
+      self.chartkick_options = {remote: true}.merge(options)
     end
   end
 end

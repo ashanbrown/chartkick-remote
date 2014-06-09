@@ -21,8 +21,7 @@ module Chartkick::Remote
       end
 
       options = options.dup
-      options.reverse_merge!(controller.class.chartkick_options) if controller.class.respond_to?(:chartkick_options)
-      options.reverse_merge!(Chartkick.options)
+      options.reverse_merge!(controller.chartkick_options) if controller.respond_to?(:chartkick_options)
 
       if options.delete(:remote)
         @remote_chart_id = (@remote_chart_id || 0) + 1

@@ -28,6 +28,21 @@ To prevent remote requests for a particular chart, set `remote` to `false` in th
 
 This will generate the data set immediately when the page is rendered.
 
+
+You can also pass arguments to chartkick for all views on your controller as options for the `chartkick_remote` call:
+
+```ruby
+<%= chartkick_remote height: "500px" %>
+```
+
+Finally, if you need to, you can restrict chartkick_remote to particular views: 
+
+```ruby
+<%= chartkick_remote only: :show %>
+```
+
+This will prevent the remote requests for other views.
+
 ## Installation
 
 First, set up 'chartkick' as described at http://ankane.github.io/chartkick/.
