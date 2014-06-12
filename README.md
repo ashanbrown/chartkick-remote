@@ -60,7 +60,13 @@ This gem works by *not* executing "remote" blocks when initially rendering your 
   * You can't use results from any code included in any prior "remote" blocks.
   * You should try to do minimal work outside of your block, so that it doesn't get executed unnecessarily for each json request.  Specifically, if you define partial results that you will use in your block, make sure that they are lazily evaluated.
 
+## Handling *Many* Requests at Once
 
+Using this methodology, it's easy to write a page that makes many, many json requests, which may swamp your server and possibly even time out if you have a global `timeout` value set for your ajax requests.  @maccman's jquery.ajax.queue.coffee script provides a basic queueing transport layer for ajax requests which I've modified to provide an option to set the maximum number of requests that can be made in parallel (see https://gist.github.com/dontfidget/1ad9ab33971b64fe6fef).  If you include the javascript in this gist on your page, you can then specify the maximum number of allowable requests globally for your page as follows:
+
+```
+  $.ajaxSetup({queue: true, queueMaxConcurrency: 2});
+```
 
 
 
