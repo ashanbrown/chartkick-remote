@@ -1,7 +1,6 @@
 require 'spec_helper'
 require 'chartkick_remote'
 
-
 AnonymousRoutes = ActionDispatch::Routing::RouteSet.new.tap do |routes|
   routes.draw { resources :anonymous }
 end
@@ -32,7 +31,7 @@ describe Chartkick::Remote, type: :controller do
 
     it "returns the remote data source as json" do
       get :index, _chartkick_remote_chart_id: 1, format: :json
-      expect(JSON.parse(response.body)).to eq [0,1]
+      expect(JSON.parse(response.body)).to eq [[0,1]]
     end
   end
 end
