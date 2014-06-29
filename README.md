@@ -1,6 +1,6 @@
 # Chartkick Remote
 
-![Travis CI Status](https://travis-ci.org/dontfidget/chartkick-remote.svg?branch=master)
+[![Travis CI Status](https://travis-ci.org/dontfidget/chartkick-remote.svg?branch=master)](https://travis-ci.org/dontfidget/chartkick-remote)
 
 [![Code Climate](https://codeclimate.com/github/dontfidget/chartkick-remote.png)](https://codeclimate.com/github/dontfidget/chartkick-remote)
 
