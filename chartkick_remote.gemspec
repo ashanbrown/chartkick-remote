@@ -1,10 +1,10 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'chartkick_remote/version'
+require 'chartkick/remote/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "chartkick_remote"
+  spec.name          = "chartkick-remote"
   spec.version       = Chartkick::Remote::VERSION
   spec.authors       = ["Andrew S. Brown"]
   spec.email         = ["andrew@dontfidget.com"]

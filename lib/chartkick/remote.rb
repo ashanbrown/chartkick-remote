@@ -1,5 +1,5 @@
-require 'chartkick_remote/helper'
-require 'chartkick_remote/remote'
+require 'chartkick/remote/helper'
+require 'chartkick/remote/remote'
 
 ActiveSupport.on_load(:action_view) do
   include Chartkick::Remote::Helper

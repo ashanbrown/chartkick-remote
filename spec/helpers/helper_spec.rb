@@ -1,6 +1,5 @@
 require 'spec_helper'
-
-require 'chartkick_remote'
+require 'chartkick/remote'
 
 AnonymousRoutes = ActionDispatch::Routing::RouteSet.new.tap do |routes|
   routes.draw { resources :anonymous }
