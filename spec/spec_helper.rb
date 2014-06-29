@@ -4,6 +4,8 @@ require 'action_controller'
 require 'rails/engine'
 require 'rspec/rails'
 require 'pry'
+require 'codeclimate-test-reporter'
+CodeClimate::TestReporter.start
 
 module Rails
   def self.application
