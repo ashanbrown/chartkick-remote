@@ -17,7 +17,7 @@ module Chartkick::Remote
   end
 
   def default_render(*)
-    if params[:_chartkick_remote_chart_id]
+    if params[:_chartkick_remote_chart_id] && !params[:_chartkick_remote_standalone]
       respond_with nil
     else
       super

@@ -23,11 +23,17 @@ module Chartkick::Remote
       options = options.dup
       options.reverse_merge!(controller.chartkick_options) if controller.respond_to?(:chartkick_options)
 
-      if options.delete(:remote)
+      standalone = options.delete(:standalone)
+      remote = options.delete(:remote)
+      skip = false
+
+      if remote
         @remote_chart_id = (@remote_chart_id || 0) + 1
-        if controller.params[:_chartkick_remote_chart_id] # json request
+        chart_id = controller.params[:_chartkick_remote_chart_id]
+        if chart_id # json request
           controller.chartkick_remote_blocks ||= {}
           controller.chartkick_remote_blocks[@remote_chart_id] = block
+          skip = standalone && chart_id.to_s == @remote_chart_id.to_s
         else
           data_source = url_for(params.merge(_chartkick_remote_chart_id: @remote_chart_id, format: :json))
         end
@@ -35,7 +41,19 @@ module Chartkick::Remote
         data_source = block.call
       end
 
-      send(:"#{type}_without_remote", data_source, options)
+      result = send(:"#{type}_without_remote", data_source, options)
+
+      if remote && standalone
+        result = '<div>Skipped</div>'.html_safe if skip
+
+        standalone_link = link_to 'Standalone',
+                                  url_for(params.merge(_chartkick_remote_chart_id: @remote_chart_id,
+                                                       _chartkick_remote_standalone: 1))
+
+        result += standalone_link.html_safe
+      end
+
+      result
     end
   end
 end

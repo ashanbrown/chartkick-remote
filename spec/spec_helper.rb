@@ -6,6 +6,7 @@ require 'action_view'
 require 'action_controller'
 require 'rails/engine'
 require 'rspec/rails'
+require 'rspec-html-matchers'
 require 'pry'
 
 module Rails

@@ -6,8 +6,8 @@ require 'chartkick_remote/version'
 Gem::Specification.new do |spec|
   spec.name          = "chartkick_remote"
   spec.version       = Chartkick::Remote::VERSION
-  spec.authors       = ["Andrew Brown"]
-  spec.email         = ["andrew@dontfidget.com.com"]
+  spec.authors       = ["Andrew S. Brown"]
+  spec.email         = ["andrew@dontfidget.com"]
   spec.description   = %q{Automatically generate remote json for chartkick}
   spec.summary       = %q{Automatically generate remote json for chartkick}
   spec.homepage      = ""
@@ -29,4 +29,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry-doc"
   spec.add_development_dependency "travis-lint"
   spec.add_development_dependency "codeclimate-test-reporter"
+  spec.add_development_dependency "rspec-html-matchers"
 end

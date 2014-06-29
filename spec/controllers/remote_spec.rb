@@ -8,9 +8,8 @@ end
 describe Chartkick::Remote, type: :controller do
   render_views
 
-  controller ActionController::Base do
+  AnonymousController = Class.new(ActionController::Base) do
     include Chartkick::Remote
-    chartkick_remote
 
     prepend_view_path 'spec/controllers/views'
 
@@ -19,6 +18,10 @@ describe Chartkick::Remote, type: :controller do
 
     def index
     end
+  end
+
+  controller AnonymousController do
+    chartkick_remote
   end
 
   describe "GET" do
@@ -32,6 +35,18 @@ describe Chartkick::Remote, type: :controller do
     it "returns the remote data source as json" do
       get :index, _chartkick_remote_chart_id: 1, format: :json
       expect(JSON.parse(response.body)).to eq [[0,1]]
+    end
+
+    describe "when the standalone option is set" do
+      controller AnonymousController do
+        chartkick_remote standalone: true
+      end
+
+      it "does not show any other charts but the selected chart" do
+        get :index, _chartkick_remote_chart_id: 1, _chartkick_remote_standalone: 1, format: :html
+
+        expect(response.body).to have_tag :div, 'Skipped' #, count: 1
+      end
     end
   end
 end
