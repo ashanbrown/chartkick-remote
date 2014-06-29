@@ -28,7 +28,6 @@ module Chartkick::Remote
         if controller.params[:_chartkick_remote_chart_id] # json request
           controller.chartkick_remote_blocks ||= {}
           controller.chartkick_remote_blocks[@remote_chart_id] = block
-          options.merge!(controller.options)
         else
           data_source = url_for(params.merge(_chartkick_remote_chart_id: @remote_chart_id, format: :json))
         end
