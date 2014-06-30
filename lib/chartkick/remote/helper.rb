@@ -40,11 +40,13 @@ module Chartkick::Remote
         data_source = block.call
       end
 
-      result = send(:"#{type}_without_remote", data_source, options)
+      if skip
+        result = send(:"#{type}_without_remote", data_source, options)
+      else
+        result = '<div>Skipped</div>'.html_safe
+      end
 
       if remote && standalone
-        result = '<div>Skipped</div>'.html_safe if skip
-
         standalone_link = link_to 'Standalone',
                                   url_for(params.merge(_chartkick_remote_chart_id: @remote_chart_id,
                                                        _chartkick_remote_standalone: 1))
