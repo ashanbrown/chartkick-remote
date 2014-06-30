@@ -42,10 +42,22 @@ describe Chartkick::Remote, type: :controller do
         chartkick_remote standalone: true
       end
 
+      it "shows a link to enter standalone mode" do
+        get :index, format: :html
+
+        expect(response.body).to have_tag :a, { text: 'Standalone', href: '/anonymous.html?_chartkick_remote' }
+      end
+
       it "does not show any other charts but the selected chart" do
         get :index, _chartkick_remote_chart_id: 1, _chartkick_remote_standalone: 1, format: :html
 
-        expect(response.body).to have_tag :div, 'Skipped by Standalone Mode' #, count: 1
+        expect(response.body).to have_tag :a, { text: 'Exit Standalone Mode', href: '/anonymous.html' }
+      end
+
+      it "shows a link to exit standalone mode" do
+        get :index, _chartkick_remote_chart_id: 1, _chartkick_remote_standalone: 1, format: :html
+
+        expect(response.body).to have_tag :a, { text: 'Exit Standalone Mode', href: '/anonymous.html' }
       end
     end
   end
