@@ -30,7 +30,7 @@ module Chartkick::Remote
       if remote
         @remote_chart_id = (@remote_chart_id || 0) + 1
         chart_id = controller.params[:_chartkick_remote_chart_id]
-        skip = standalone && chart_id && chart_id.to_s != @remote_chart_id.to_s
+        skip = params[:_chartkick_remote_standalone] && chart_id.to_s != @remote_chart_id.to_s
         controller.chartkick_remote_blocks ||= {}
         controller.chartkick_remote_blocks[@remote_chart_id] = block
         data_source = url_for(params.
