@@ -41,9 +41,9 @@ module Chartkick::Remote
       end
 
       if skip
-        result = send(:"#{type}_without_remote", data_source, options)
-      else
         result = '<div>Skipped</div>'.html_safe
+      else
+        result = send(:"#{type}_without_remote", data_source, options)
       end
 
       if remote && standalone
