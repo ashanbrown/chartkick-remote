@@ -47,7 +47,7 @@ module Chartkick::Remote
       skip = standalone_enabled && controller.params[:_chartkick_remote_chart_id].to_s != @remote_chart_id.to_s
 
       if skip || !standalone_enabled
-        result = '<div>Skipped by Standalone Mode</div>'.html_safe
+        result = '<div>Skipped by Standalone Mode</div>'.html_safe if standalone_enabled
         standalone_link = link_to 'Standalone',
                                   url_for(params.merge(_chartkick_remote_chart_id: @remote_chart_id,
                                                        _chartkick_remote_standalone: 1))
