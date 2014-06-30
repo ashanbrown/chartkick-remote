@@ -33,7 +33,7 @@ module Chartkick::Remote
         if chart_id # json request
           controller.chartkick_remote_blocks ||= {}
           controller.chartkick_remote_blocks[@remote_chart_id] = block
-          skip = standalone && chart_id.to_s == @remote_chart_id.to_s
+          skip = standalone && chart_id.to_s != @remote_chart_id.to_s
         else
           data_source = url_for(params.merge(_chartkick_remote_chart_id: @remote_chart_id, format: :json))
         end
