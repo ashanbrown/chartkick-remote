@@ -34,22 +34,23 @@ module Chartkick::Remote
         data_source = block.call
       end
 
+      standalone = options.delete(:standalone)
+
       result = send(:"#{type}_without_remote", data_source, options)
 
-      result = apply_standalone_mode(result) if options.delete(:standalone) && remote
+      result = apply_standalone_mode(result, @remote_chart_id) if standalone && remote
 
       result
     end
 
-    def apply_standalone_mode(result)
+    def apply_standalone_mode(result, chart_id)
       standalone_enabled = params[:_chartkick_remote_standalone].present?
-
-      skip = standalone_enabled && controller.params[:_chartkick_remote_chart_id].to_s != @remote_chart_id.to_s
+      skip = standalone_enabled && params[:_chartkick_remote_chart_id].to_s != chart_id.to_s
 
       if skip || !standalone_enabled
         result = '<div>Skipped by Standalone Mode</div>'.html_safe if standalone_enabled
         standalone_link = link_to 'Standalone',
-                                  url_for(params.merge(_chartkick_remote_chart_id: @remote_chart_id,
+                                  url_for(params.merge(_chartkick_remote_chart_id: chart_id,
                                                        _chartkick_remote_standalone: 1))
         result += standalone_link.html_safe
       elsif standalone_enabled && !skip
