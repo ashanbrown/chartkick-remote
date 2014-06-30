@@ -23,14 +23,8 @@ module Chartkick::Remote
       options = options.dup
       options.reverse_merge!(controller.chartkick_options) if controller.respond_to?(:chartkick_options)
 
-      standalone = options.delete(:standalone)
-      remote = options.delete(:remote)
-      skip = false
-
-      if remote
+      if remote = options.delete(:remote)
         @remote_chart_id = (@remote_chart_id || 0) + 1
-        chart_id = controller.params[:_chartkick_remote_chart_id]
-        skip = params[:_chartkick_remote_standalone] && chart_id.to_s != @remote_chart_id.to_s
         controller.chartkick_remote_blocks ||= {}
         controller.chartkick_remote_blocks[@remote_chart_id] = block
         data_source = url_for(params.
@@ -40,17 +34,28 @@ module Chartkick::Remote
         data_source = block.call
       end
 
-      if skip
-        result = '<div>Skipped</div>'.html_safe
-      else
-        result = send(:"#{type}_without_remote", data_source, options)
-      end
+      result = send(:"#{type}_without_remote", data_source, options)
 
-      if remote && standalone
+      result = apply_standalone_mode(result) if options.delete(:standalone) && remote
+
+      result
+    end
+
+    def apply_standalone_mode(result)
+      standalone_enabled = params[:_chartkick_remote_standalone].present?
+
+      skip = standalone_enabled && controller.params[:_chartkick_remote_chart_id].to_s != @remote_chart_id.to_s
+
+      if skip || !standalone_enabled
+        result = '<div>Skipped by Standalone Mode</div>'.html_safe
         standalone_link = link_to 'Standalone',
                                   url_for(params.merge(_chartkick_remote_chart_id: @remote_chart_id,
                                                        _chartkick_remote_standalone: 1))
-
+        result += standalone_link.html_safe
+      elsif standalone_enabled && !skip
+        standalone_link = link_to 'Exit Standalone Mode',
+                                  url_for(params.except(:_chartkick_remote_chart_id,
+                                                        :_chartkick_remote_standalone))
         result += standalone_link.html_safe
       end
 

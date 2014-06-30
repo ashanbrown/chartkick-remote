@@ -45,7 +45,7 @@ describe Chartkick::Remote, type: :controller do
       it "does not show any other charts but the selected chart" do
         get :index, _chartkick_remote_chart_id: 1, _chartkick_remote_standalone: 1, format: :html
 
-        expect(response.body).to have_tag :div, 'Skipped' #, count: 1
+        expect(response.body).to have_tag :div, 'Skipped by Standalone Mode' #, count: 1
       end
     end
   end
