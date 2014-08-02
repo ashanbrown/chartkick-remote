@@ -1,4 +1,4 @@
-# Chartkick Remote [![Travis CI Status](https://travis-ci.org/dontfidget/chartkick-remote.png?branch=master)](https://travis-ci.org/dontfidget/chartkick-remote)&nbsp;[![Code Climate](https://codeclimate.com/github/dontfidget/chartkick-remote.png)](https://codeclimate.com/github/dontfidget/chartkick-remote)&nbsp;[![Code Climate](https://codeclimate.com/github/dontfidget/chartkick-remote/coverage.png)](https://codeclimate.com/github/dontfidget/chartkick-remote)
+# Chartkick Remote [![Travis CI Status](https://travis-ci.org/dontfidget/chartkick-remote.png?branch=master)](https://travis-ci.org/dontfidget/chartkick-remote)&nbsp;[![Code Climate](https://codeclimate.com/github/dontfidget/chartkick-remote.png)](https://codeclimate.com/github/dontfidget/chartkick-remote)&nbsp;[![Code Climate](https://codeclimate.com/github/dontfidget/chartkick-remote/coverage.png)](https://codeclimate.com/github/dontfidget/chartkick-remote)&nbsp;[![Dependency Status](https://gemnasium.com/dontfidget/chartkick-remote.svg)](https://gemnasium.com/dontfidget/chartkick-remote)
 
 ## Usage
 
