@@ -63,11 +63,21 @@ This gem works by *not* executing "remote" blocks when initially rendering your 
 
 ## Handling *Many* Requests at Once
 
-Using this methodology, it's easy to write a page that makes many, many json requests, which may swamp your server and possibly even time out if you have a global `timeout` value set for your ajax requests.  @maccman's jquery.ajax.queue.coffee script provides a basic queueing transport layer for ajax requests which I've modified to provide an option to set the maximum number of requests that can be made in parallel (see https://gist.github.com/dontfidget/1ad9ab33971b64fe6fef).  If you include the javascript in this gist on your page, you can then specify the maximum number of allowable requests globally for your page as follows:
+Using this methodology, it's easy to write a page that makes many, many json requests, which may swamp your server and possibly even time out if you have a global `timeout` value set for your ajax requests.  `chartkick-remote` provides a javascript script, available as a rails asset, that can be used to limit the number of simultaneous assets on your page. 
+  
+You can include it by adding the following to your javascript manifest:
+ 
+ ```
+ //= require jquery.ajax.queue-concurrent
+ ```
+  
+If you include this javascript in this gist on your page, you can then specify the maximum number of allowable requests globally for your page as follows:
 
 ```javascript
   $.ajaxSetup({queue: true, queueMaxConcurrency: 2});
 ```
+
+This script is based on @maccman's jquery.ajax.queue.coffee script provides a basic queueing transport layer for ajax requests which I've modified to provide an option to set the maximum number of requests that can be made in parallel.  You can see the modifications with a link to the original at https://gist.github.com/dontfidget/1ad9ab33971b64fe6fef.  
 
 ## Standalone Mode (for debugging)
 

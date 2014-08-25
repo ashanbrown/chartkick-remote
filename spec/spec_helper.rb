@@ -7,7 +7,11 @@ require 'action_controller'
 require 'rails/engine'
 require 'rspec/rails'
 require 'rspec-html-matchers'
-require 'pry'
+
+begin
+  require 'pry'
+rescue LoadError
+end
 
 module Rails
   def self.application
