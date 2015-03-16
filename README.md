@@ -1,4 +1,4 @@
-# Chartkick Remote [![Gem Version](https://badge.fury.io/rb/chartkick-remote.svg)](http://badge.fury.io/rb/chartkick-remote)&nbsp;[![Travis CI Status](https://travis-ci.org/dontfidget/chartkick-remote.png?branch=master)](https://travis-ci.org/dontfidget/chartkick-remote)&nbsp;[![Code Climate](https://codeclimate.com/github/dontfidget/chartkick-remote.png)](https://codeclimate.com/github/dontfidget/chartkick-remote)&nbsp;[![Code Climate](https://codeclimate.com/github/dontfidget/chartkick-remote/coverage.png)](https://codeclimate.com/github/dontfidget/chartkick-remote)&nbsp;[![Dependency Status](https://gemnasium.com/dontfidget/chartkick-remote.svg)](https://gemnasium.com/dontfidget/chartkick-remote)
+# Chartkick Remote [![Gem Version](https://badge.fury.io/rb/chartkick-remote.svg)](http://badge.fury.io/rb/chartkick-remote)&nbsp;[![Travis CI Status](https://travis-ci.org/ashanbrown/chartkick-remote.png?branch=master)](https://travis-ci.org/ashanbrown/chartkick-remote)&nbsp;[![Code Climate](https://codeclimate.com/github/ashanbrown/chartkick-remote.png)](https://codeclimate.com/github/ashanbrown/chartkick-remote)&nbsp;[![Code Climate](https://codeclimate.com/github/ashanbrown/chartkick-remote/coverage.png)](https://codeclimate.com/github/ashanbrown/chartkick-remote)&nbsp;[![Dependency Status](https://gemnasium.com/ashanbrown/chartkick-remote.svg)](https://gemnasium.com/ashanbrown/chartkick-remote)
 
 ## Usage
 
@@ -77,7 +77,7 @@ If you include this javascript in this gist on your page, you can then specify t
   $.ajaxSetup({queue: true, queueMaxConcurrency: 2});
 ```
 
-This script is based on @maccman's jquery.ajax.queue.coffee script provides a basic queueing transport layer for ajax requests which I've modified to provide an option to set the maximum number of requests that can be made in parallel.  You can see the modifications with a link to the original at https://gist.github.com/dontfidget/1ad9ab33971b64fe6fef.  
+This script is based on @maccman's jquery.ajax.queue.coffee script provides a basic queueing transport layer for ajax requests which I've modified to provide an option to set the maximum number of requests that can be made in parallel.  You can see the modifications with a link to the original at https://gist.github.com/ashanbrown/1ad9ab33971b64fe6fef.  
 
 ## Standalone Mode (for debugging)
 
