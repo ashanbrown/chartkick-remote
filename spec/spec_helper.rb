@@ -2,6 +2,7 @@ require 'codeclimate-test-reporter'
 CodeClimate::TestReporter.start
 
 require 'active_support'
+require 'active_support/deprecation'
 require 'action_view'
 require 'action_controller'
 require 'rails/engine'
