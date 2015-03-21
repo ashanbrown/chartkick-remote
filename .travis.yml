@@ -8,4 +8,7 @@ rvm:
 # script: bundle exec rspec spec
 
 script:
-  CODECLIMATE_REPO_TOKEN=25d03499fa4fad3f1edcd9d382e7a8d98a340b313cf9384ca2c679c8bf25d721 bundle exec rake
+  bundle exec rake
+
+env:
+  secure: "S85Dv1jCKks2agGciaOXBVuq3RW50lWbIdq7puCpOGgiZtmi43JIHfLbmrq3gf7GNWdA+ZoV89p6HWplTJd9s6DVn1LyYvRBJKfPFzx0W/lmRnj1rak808Dw4+pIfD0Ytpl8qvoRdBzoZCwoPVGiGSn7CA30akj3W3jpXxvSB7g="  
