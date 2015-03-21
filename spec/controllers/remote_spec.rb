@@ -1,31 +1,39 @@
 require 'spec_helper'
 require 'chartkick/remote'
 
-AnonymousRoutes = ActionDispatch::Routing::RouteSet.new.tap do |routes|
-  routes.draw { resources :anonymous }
-end
-
 describe Chartkick::Remote, type: :controller do
   render_views
 
-  AnonymousController = Class.new(ActionController::Base) do
+  anonymous_routes = ActionDispatch::Routing::RouteSet.new.tap do |routes|
+    routes.draw { resources :anonymous }
+  end
+
+  anonymous_controller = Class.new(ActionController::Base) do
     include Chartkick::Remote
 
     prepend_view_path 'spec/controllers/views'
 
-    include AnonymousRoutes.url_helpers
-    helper AnonymousRoutes.url_helpers
+    include anonymous_routes.url_helpers
+    helper anonymous_routes.url_helpers
 
     def index
     end
+
+    def self.controller_name
+      'anonymous'
+    end
+
+    def self.controller_path
+      'anonymous'
+    end
   end
 
-  controller AnonymousController do
+  controller anonymous_controller do
     chartkick_remote
   end
 
   describe "GET" do
-    routes { AnonymousRoutes }
+    routes { anonymous_routes }
 
     it "generates a remote data source" do
       get :index, format: :html
@@ -38,7 +46,7 @@ describe Chartkick::Remote, type: :controller do
     end
 
     describe "when the standalone option is set" do
-      controller AnonymousController do
+      controller anonymous_controller do
         chartkick_remote standalone: true
       end
 

@@ -1,22 +1,22 @@
 require 'spec_helper'
 require 'chartkick/remote'
 
-AnonymousRoutes = ActionDispatch::Routing::RouteSet.new.tap do |routes|
-  routes.draw { resources :anonymous }
-end
-
 describe Chartkick::Remote::Helper, type: :helper do
+  anonymous_routes = ActionDispatch::Routing::RouteSet.new.tap do |routes|
+    routes.draw { resources :anonymous }
+  end
+
   describe "when the standalone option is set" do
     it "includes a link to the standalone version of the chart" do
 
       @controller.singleton_class.class_eval do
         include Chartkick::Remote
-        include AnonymousRoutes.url_helpers
+        include anonymous_routes.url_helpers
         chartkick_remote
       end
 
       helper.singleton_class.class_eval do
-        include AnonymousRoutes.url_helpers
+        include anonymous_routes.url_helpers
       end
 
       @controller.params.merge!(
