@@ -12,3 +12,10 @@ script:
 
 env:
   secure: "S85Dv1jCKks2agGciaOXBVuq3RW50lWbIdq7puCpOGgiZtmi43JIHfLbmrq3gf7GNWdA+ZoV89p6HWplTJd9s6DVn1LyYvRBJKfPFzx0W/lmRnj1rak808Dw4+pIfD0Ytpl8qvoRdBzoZCwoPVGiGSn7CA30akj3W3jpXxvSB7g="  
+
+env:
+  - "RAILS_VERSION=3.1.0"
+  - "RAILS_VERSION=3.2.0"
+  - "RAILS_VERSION=4.1.0"
+  - "RAILS_VERSION=4.2.0"
+  - "RAILS_VERSION=master"
