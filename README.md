@@ -2,7 +2,7 @@
 
 ## Usage
 
-This is an add-on to ankane's Chartkick to allow the user to specify chart data in a block and have it automatically sourced remotely to avoid making too many queries in the original page render.  Check out the demo at  http://chartkick-remote-demo.heroku.com.
+This is an add-on to ankane's Chartkick to allow the user to specify chart data in a block and have it automatically sourced remotely to avoid making too many queries in the original page render.  Check out the demo at  http://chartkick-remote-demo.heroku.com. (Note: The site has an error)
 
 
 For more on the fabulous Chartkick library, see http://ankane.github.io/chartkick/.
